@@ -122,3 +122,55 @@ class View:
         
         return new_board
     
+    def _draw_entries(self):
+        ''' Creates a 9 x 9 grid of entry labels so that we can receive input for the Sudoku board. '''
+        _pady = (2, 2)
+        _padx = (1, 1)
+        
+        for i in range(DIMENSION):
+            row = []
+
+            # Specific Paddings to emphasize each 3x3 Grid #
+            if i == 2 or i == 5:
+                _pady = (2, 5)
+            else:
+                _pady = (2, 2)
+                
+            for j in range(DIMENSION):
+                # Specific Paddings to emphasize each 3x3 Grid #
+                if j == 2 or j == 5:
+                    _padx = (0, 5)
+                else:
+                    _padx = (1, 1)
+                
+                e = tk.Entry(self.input_window, width=4)
+                e.grid(row = i + 1, column = j, pady = _pady, padx = _padx)
+                row.append(e)
+        
+            self.entry_labels.append(row)
+            
+    def _new_board(self):
+        ''' Erases the current contents of the GUI and draws the current board. '''
+        self._canvas.delete(tk.ALL)
+        self.create_grid()
+        self._draw_board()
+    
+    def _draw_board(self):
+        ''' Draws the current board if the user has chosen a board to display. '''
+        if self.current_board != None:
+            text_offset = self.rectangle_height // 2
+            for i in range(DIMENSION):
+                for j in range(DIMENSION):
+                    if self.current_board[j][i] != 0:
+                        x = (self.rectangle_height * i) + WINDOW_OFFSET + text_offset
+                        y = (self.rectangle_height * j) + WINDOW_OFFSET + text_offset
+                        text_offset = self.rectangle_height / 2
+                        self._canvas.create_text(x, y, text = str(self.current_board[j][i]), font=("Arial", 32))
+    
+    def _reset(self):
+        ''' Resets the board currently being displayed. '''
+        self.current_board = None
+        self._canvas.delete(tk.ALL)
+        self.create_grid()
+    
+    
