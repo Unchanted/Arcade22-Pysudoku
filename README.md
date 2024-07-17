@@ -27,7 +27,7 @@ Make sure you have Python installed on your machine. You can download it from [p
 2. **Navigate to the project directory:**
 
     ```sh
-    cd Arcade22-Pysudoku.git
+    cd Arcade22-Pysudoku
     ```
 
 3. **Run the program:**
