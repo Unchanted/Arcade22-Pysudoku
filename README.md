@@ -50,3 +50,5 @@ After running `python main.py`, you will be prompted to input your own Sudoku pu
 
 
 Happy solving!
+
+Arcade 22
